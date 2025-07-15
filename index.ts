@@ -1,48 +1,35 @@
-import Fastify from 'fastify';
+import Fastify, { FastifyRequest, FastifyReply } from 'fastify';
 import cors from '@fastify/cors';
 import mysql from 'mysql2/promise';
 
 const fastify = Fastify({ logger: true });
 
-fastify.register(cors, { origin: '*' });
+fastify.register(cors, {
+  origin: '*',
+  methods: ['POST', 'GET', 'DELETE', 'PUT']
+});
 
 const dbConfig = {
   host: 'localhost',
-  user: 'root',      
-  password: '',      
+  user: 'root',
+  password: '',
   database: 'books44'
 };
 
-// Função para obter conexão
 async function getConnection() {
   return await mysql.createConnection(dbConfig);
 }
 
-const app = fastify();
-app.register(cors, { origin: '*', 
-  methods: ['POST', 'GET', 'DELETE', 'PUT']
-});
-
-// Função para criar conexão
-async function criarConexao() {
-  return await mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'books44'
-  });
-}
-
-app.get('/', async (request: FastifyRequest, reply: FastifyReply) => {
+// Rota inicial
+fastify.get('/', async (request: FastifyRequest, reply: FastifyReply) => {
   reply.status(200).send({ mensagem: "API 44Books - Backend" });
 });
 
-
 // Relatório com INNER JOIN
-app.get('/relatorio', async (req: FastifyRequest, reply: FastifyReply) => {
+fastify.get('/relatorio', async (request: FastifyRequest, reply: FastifyReply) => {
   let conn;
   try {
-    conn = await criarConexao();
+    conn = await getConnection();
     const [rows] = await conn.query(`
       SELECT 
         l.id, 
@@ -65,7 +52,6 @@ app.get('/relatorio', async (req: FastifyRequest, reply: FastifyReply) => {
 });
 
 // ROTAS AUTORES
-
 fastify.get('/autores', async () => {
   const conn = await getConnection();
   const [rows] = await conn.query('SELECT * FROM autores');
@@ -82,7 +68,7 @@ fastify.post('/autores', async (request, reply) => {
 });
 
 fastify.put('/autores/:id', async (request, reply) => {
-  const id = Number(request.params.id);
+  const id = Number((request.params as any).id);
   const { nome, nacionalidade } = request.body as { nome: string; nacionalidade: string };
   const conn = await getConnection();
   await conn.query('UPDATE autores SET nome = ?, nacionalidade = ? WHERE id = ?', [nome, nacionalidade, id]);
@@ -91,23 +77,17 @@ fastify.put('/autores/:id', async (request, reply) => {
 });
 
 fastify.delete('/autores/:id', async (request, reply) => {
-  const id = Number(request.params.id);
+  const id = Number((request.params as any).id);
   const conn = await getConnection();
-
-  // Deleta livros do autor
   await conn.query('DELETE FROM livros WHERE autor_id = ?', [id]);
-  // Deleta autor
   await conn.query('DELETE FROM autores WHERE id = ?', [id]);
-
   await conn.end();
   return { message: 'Autor e seus livros deletados com sucesso' };
 });
 
 // ROTAS LIVROS
-
 fastify.get('/livros', async () => {
   const conn = await getConnection();
-  // Pega livros com nome do autor para mostrar na tabela
   const [rows] = await conn.query(`
     SELECT livros.*, autores.nome AS autor 
     FROM livros 
@@ -135,7 +115,7 @@ fastify.post('/livros', async (request, reply) => {
 });
 
 fastify.put('/livros/:id', async (request, reply) => {
-  const id = Number(request.params.id);
+  const id = Number((request.params as any).id);
   const { titulo, preco, genero, ano_publicacao, autor_id } = request.body as {
     titulo: string;
     preco: number;
@@ -153,7 +133,7 @@ fastify.put('/livros/:id', async (request, reply) => {
 });
 
 fastify.delete('/livros/:id', async (request, reply) => {
-  const id = Number(request.params.id);
+  const id = Number((request.params as any).id);
   const conn = await getConnection();
   await conn.query('DELETE FROM livros WHERE id = ?', [id]);
   await conn.end();
@@ -163,11 +143,12 @@ fastify.delete('/livros/:id', async (request, reply) => {
 // Iniciar servidor
 const start = async () => {
   try {
-    await app.listen({ port: 8000 });
+    await fastify.listen({ port: 8000 });
     console.log('Servidor rodando em http://localhost:8000');
   } catch (err) {
-    app.log.error(err);
+    fastify.log.error(err);
     process.exit(1);
   }
 };
 start();
+
