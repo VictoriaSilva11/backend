@@ -1,80 +1,80 @@
-# 📚 44Books — Backend
+#  Backend - 44Books 
 
-Sistema simples de gerenciamento de livros e autores, desenvolvido como atividade escolar 
----
+Este é o backend da aplicação **44Books**, uma livraria fictícia com CRUD completo para autores e livros, desenvolvido com **Fastify** e **MySQL**.
 
-##  Tecnologias utilizadas
+##  Tecnologias
+- Fastify (framework leve e rápido para Node.js)
+- MySQL (banco de dados relacional)
+- TypeScript
+- @fastify/cors
+- mysql2 (driver para Node.js)
 
-- [Node.js](https://nodejs.org/)
-- [Fastify](https://fastify.dev/)
-- [MySQL](https://www.mysql.com/)
-- [TypeScript](https://www.typescriptlang.org/)
+##  Configuração do Banco de Dados
 
----
+```sql
+CREATE DATABASE books44;
 
-##  Execução do backend
-
-Acesse a pasta do backend:
-backend
-
-Instale as dependências:
-npm install
-
-Inicie o servidor:
-npm run dev
-
- A API estará disponível em:
- http://localhost:8000
-
-## Estrutura das rotas
-
- /livros
-GET	Retorna todos os livros
-POST	Cadastra um novo livro
-PUT	Atualiza um livro
-DELETE	Remove um livro
-
- /autores
-GET	Retorna todos os autores
-POST	Cadastra um novo autor
-PUT	Atualiza um autor
-DELETE	Remove autor e seus livros
-
- ## Banco de Dados
-
-Execute os comandos abaixo no seu MySQL:
-
- ```sql
-CREATE DATABASE IF NOT EXISTS books44;
 USE books44;
 
 CREATE TABLE autores (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  imagemUrl VARCHAR(5000),
-  nome VARCHAR(100) NOT NULL,
-  nacionalidade VARCHAR(50)
+  nome VARCHAR(100),
+  nacionalidade VARCHAR(100),
+  imagemUrl TEXT
 );
 
 CREATE TABLE livros (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  titulo VARCHAR(150) NOT NULL,
-  preco DECIMAL(10,2),
+  titulo VARCHAR(100),
+  preco DECIMAL(10, 2),
   genero VARCHAR(50),
   ano_publicacao INT,
+  imagemUrl TEXT,
   autor_id INT,
-  imagemUrl VARCHAR(10000),
-  FOREIGN KEY (autor_id) REFERENCES autores(id)
+  FOREIGN KEY (autor_id) REFERENCES autores(id) ON DELETE CASCADE
 );
-
--- Inserção de autores
-INSERT INTO autores (id, imagemUrl, nome, nacionalidade) VALUES
-(1, 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Frank_Herbert_1984_%28square%29.jpg/250px-Frank_Herbert_1984_%28square%29.jpg', 'Frank Herbert', 'Estadunidense'),
-(2, 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Portrait_photoshoot_at_Worldcon_75%2C_Helsinki%2C_before_the_Hugo_Awards_%E2%80%93_George_R._R._Martin.jpg/250px-Portrait_photoshoot_at_Worldcon_75%2C_Helsinki%2C_before_the_Hugo_Awards_%E2%80%93_George_R._R._Martin.jpg', 'George R. R. Martin', 'Estadunidense');
-
--- Inserção de livros
-INSERT INTO livros (id, titulo, preco, genero, ano_publicacao, autor_id, imagemUrl) VALUES
-(1, 'Duna', 80.00, 'Ficção', 1965, 1, 'https://m.media-amazon.com/images/I/41MRn6hy8-L._SY445_SX342_.jpg'),
-(2, 'Fogo & Sangue', 95.00, 'Ficção', 2018, 2, 'https://m.media-amazon.com/images/I/818yNY0mMZL._UF1000,1000_QL80_.jpg');
 ```
 
- ## Desenvolvido por Victoria 1023A
+##  Endpoints da API
+
+### Autores
+- `GET /autores` → Lista todos os autores
+- `POST /autores` → Adiciona novo autor
+- `PUT /autores/:id` → Atualiza um autor
+- `DELETE /autores/:id` → Remove autor e seus livros associados
+
+### Livros
+- `GET /livros` → Lista todos os livros (com nome do autor)
+- `POST /livros` → Adiciona novo livro
+- `PUT /livros/:id` → Atualiza um livro
+- `DELETE /livros/:id` → Remove um livro
+
+##  CORS
+Permissões abertas para requisições de qualquer origem:
+
+```ts
+fastify.register(cors, {
+  origin: '*',
+  methods: ['POST', 'GET', 'DELETE', 'PUT']
+});
+```
+
+##  Inicialização
+
+1. Instale as dependências:
+```bash
+npm install
+npm install fastify @fastify/cors mysql2 typescript ts-node-dev
+```
+
+2. rode o servidor com:
+```bash
+npm run dev
+```
+
+3. Acesse: [http://localhost:8000](http://localhost:8000)
+
+##  Desenvolvedora
+**Victória de Almeida Silva**  
+Este backend foi criado para gerenciar os dados da aplicação da livraria **44Books**.
+---
