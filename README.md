@@ -35,33 +35,37 @@ CREATE TABLE livros (
 );
 
 -- Inserção de autores
-INSERT INTO autores (id, nome, nacionalidade) VALUES (3, 'Ali Hazelwood', 'Italiana', ‘https://alihazelwood.com/wp-content/uploads/2022/01/IMG_3527-scaled.jpeg’);
-INSERT INTO autores (id, nome, nacionalidade) VALUES (4, 'Allison Saft', 'Estadunidense', ‘https://t1.bookpage.com/wp-content/uploads/2022/02/25115313/MUG-Allison-Saft-CREDIT-Lisa-DeNeffe_WEB.jpg’);
-INSERT INTO autores (id, nome, nacionalidade) VALUES (7, 'Lynn Painter', 'Estadunidense', ‘https://images.gr-assets.com/authors/1577135205p8/19322026.jpg’);
-INSERT INTO autores (id, nome, nacionalidade) VALUES (12, 'Holly Black', 'Estadunidense', ‘https://blackholly.com/wp-content/uploads/2014/05/Holly-Black1-683x1024.jpg’);
-INSERT INTO autores (id, nome, nacionalidade) VALUES (14, 'Agatha Christie', 'Britânica', ‘https://m.media-amazon.com/images/M/MV5BMTU3OTYzMzY4NV5BMl5BanBnXkFtZTcwMDIxOTIyOA@@._V1_.jpg’);
-INSERT INTO autores (id, nome, nacionalidade) VALUES (23, 'Sophie Kim', 'Estadunidense', ‘https://cdn1.booknode.com/author_picture/5366/sophie-kim-5366476-330-540.jpg’);
-INSERT INTO autores (id, nome, nacionalidade) VALUES (25, 'Elayne Baeta', 'Brasileira', ‘https://revistabellas.com.br/wp-content/uploads/2024/04/Elayne-Baeta.jpg’);
-INSERT INTO autores (id, nome, nacionalidade) VALUES (29, 'Stephanie Garber', 'Estadunidense', ‘https://www.yabookscentral.com/wp-content/uploads/2023/10/AUTHOR-PHOTO_StephanieGarber_c-Etched-in-Time-Photography-scaled.jpg’);
-INSERT INTO autores (id, nome, nacionalidade) VALUES (34, 'Rebecca Ross', 'Estadunidense', ‘https://images.gr-assets.com/authors/1655904642p8/14926516.jpg’);
-INSERT INTO autores (id, nome, nacionalidade) VALUES (40, 'Sally Rooney', 'Irlandesa', ‘https://thekit.ca/wp-content/uploads/2021/08/2021-sally-thekit.ca-feature-705x849.jpg’);
+INSERT INTO autores (id, nome, nacionalidade, imagemUrl) VALUES 
+(3, 'Ali Hazelwood', 'Italiana', 'https://alihazelwood.com/wp-content/uploads/2022/01/IMG_3527-scaled.jpeg'),
+(4, 'Allison Saft', 'Estadunidense', 'https://t1.bookpage.com/wp-content/uploads/2022/02/25115313/MUG-Allison-Saft-CREDIT-Lisa-DeNeffe_WEB.jpg'),
+(7, 'Lynn Painter', 'Estadunidense', 'https://images.gr-assets.com/authors/1577135205p8/19322026.jpg'),
+(12, 'Holly Black', 'Estadunidense', 'https://blackholly.com/wp-content/uploads/2014/05/Holly-Black1-683x1024.jpg'),
+(14, 'Agatha Christie', 'Britânica', 'https://m.media-amazon.com/images/M/MV5BMTU3OTYzMzY4NV5BMl5BanBnXkFtZTcwMDIxOTIyOA@@._V1_.jpg'),
+(23, 'Sophie Kim', 'Estadunidense', 'https://cdn1.booknode.com/author_picture/5366/sophie-kim-5366476-330-540.jpg'),
+(25, 'Elayne Baeta', 'Brasileira', 'https://revistabellas.com.br/wp-content/uploads/2024/04/Elayne-Baeta.jpg'),
+(29, 'Stephanie Garber', 'Estadunidense', 'https://www.yabookscentral.com/wp-content/uploads/2023/10/AUTHOR-PHOTO_StephanieGarber_c-Etched-in-Time-Photography-scaled.jpg'),
+(34, 'Rebecca Ross', 'Estadunidense', 'https://images.gr-assets.com/authors/1655904642p8/14926516.jpg'),
+(40, 'Sally Rooney', 'Irlandesa', 'https://thekit.ca/wp-content/uploads/2021/08/2021-sally-thekit.ca-feature-705x849.jpg');
 
--- Inserção de livros
-INSERT INTO livros (id, titulo, preco, genero, ano_publicacao, autor_id) VALUES (3, 'Noiva', 59.90, 'Romance', 2024, ‘https://m.media-amazon.com/images/I/812RDxFDd8L._SL1500_.jpg’, 3);
-INSERT INTO livros (id, titulo, preco, genero, ano_publicacao, autor_id) VALUES (4, 'Asas reluzentes', 65.00, 'Romance', 2025, ‘https://m.media-amazon.com/images/I/813BWVj4ATL._SL1500_.jpg’, 4);
-INSERT INTO livros (id, titulo, preco, genero, ano_publicacao, autor_id) VALUES (6, 'Não é como nos filmes', 45.90, 'Romance', 2025, ‘https://m.media-amazon.com/images/I/71KrPChpFXL.jpg’, 7);
-INSERT INTO livros (id, titulo, preco, genero, ano_publicacao, autor_id) VALUES (11, 'O príncipe cruel', 45.00, 'Fantasia', 2018, ‘https://m.media-amazon.com/images/I/81FH6q0EqYS.jpg’, 12);
-INSERT INTO livros (id, titulo, preco, genero, ano_publicacao, autor_id) VALUES (13, 'Morte no Nilo', 35.90, 'Mistério', 2020, ‘https://m.media-amazon.com/images/I/71Jt2eJxI6L._UF1000,1000_QL80_.jpg’, 14);
-INSERT INTO livros (id, titulo, preco, genero, ano_publicacao, autor_id) VALUES (23, 'O deus e a raposa', 79.80, 'Fantasia', 2025, ‘https://m.media-amazon.com/images/I/81E-GVkEsrL._UF894,1000_QL80_.jpg’, 23);
-INSERT INTO livros (id, titulo, preco, genero, ano_publicacao, autor_id) VALUES (25, 'Coisas óbvias sobre o amor', 56.40, 'Romance', 2024, ‘https://m.media-amazon.com/images/I/81LMf5x28kL._UF894,1000_QL80_.jpg’, 25);
-INSERT INTO livros (id, titulo, preco, genero, ano_publicacao, autor_id) VALUES (28, 'Xeque-mate', 44.90, 'Romance', 2024, ‘https://m.media-amazon.com/images/I/81O6eWVPaiL.jpg’, 3);
-INSERT INTO livros (id, titulo, preco, genero, ano_publicacao, autor_id) VALUES (30, 'Um amor problemático de verão', 44.59, 'Romance', 2025, ‘https://m.media-amazon.com/images/I/81mxxQTX0wL.jpg’, 3);
-INSERT INTO livros (id, titulo, preco, genero, ano_publicacao, autor_id) VALUES (32, 'Era uma vez um coração partido', 49.90, 'Fantasia', 2021, ‘https://m.media-amazon.com/images/I/91L6DCEfDuL._UF1000,1000_QL80_.jpg’, 29);
-INSERT INTO livros (id, titulo, preco, genero, ano_publicacao, autor_id) VALUES (34, 'No fundo é amor', 45.40, 'Romance', 2025, ‘https://m.media-amazon.com/images/I/81XvsucSLVL.jpg’, 3);
-INSERT INTO livros (id, titulo, preco, genero, ano_publicacao, autor_id) VALUES (37, 'Não é amor', 45.99, 'Romance', 2025, ‘https://m.media-amazon.com/images/I/71i-HM1ZrlL.jpg’, 3);
-INSERT INTO livros (id, titulo, preco, genero, ano_publicacao, autor_id) VALUES (40, 'Divinos rivais', 36.40, 'Romance', 2024, ‘https://m.media-amazon.com/images/I/810NKENMWoL._UF1000,1000_QL80_.jpg’, 34);
-INSERT INTO livros (id, titulo, preco, genero, ano_publicacao, autor_id) VALUES (43, 'Caraval', 56.40, 'Fantasia', 2023, ‘https://m.media-amazon.com/images/I/71p66yY4htL.jpg’, 29);
-INSERT INTO livros (id, titulo, preco, genero, ano_publicacao, autor_id) VALUES (47, 'Intermezzo', 68.30, 'Drama', 2024, ‘https://m.media-amazon.com/images/I/71y3p559-TL.jpg’, 40);
+
+INSERT INTO livros (id, titulo, preco, genero, ano_publicacao, imagemUrl, autor_id) VALUES 
+(3, 'Noiva', 59.90, 'Romance', 2024, 'https://m.media-amazon.com/images/I/812RDxFDd8L._SL1500_.jpg', 3),
+(4, 'Asas reluzentes', 65.00, 'Romance', 2025, 'https://m.media-amazon.com/images/I/813BWVj4ATL._SL1500_.jpg', 4),
+(6, 'Não é como nos filmes', 45.90, 'Romance', 2025, 'https://m.media-amazon.com/images/I/71KrPChpFXL.jpg', 7),
+(11, 'O príncipe cruel', 45.00, 'Fantasia', 2018, 'https://m.media-amazon.com/images/I/81FH6q0EqYS.jpg', 12),
+(13, 'Morte no Nilo', 35.90, 'Mistério', 2020, 'https://m.media-amazon.com/images/I/71Jt2eJxI6L._UF1000,1000_QL80_.jpg', 14),
+(23, 'O deus e a raposa', 79.80, 'Fantasia', 2025, 'https://m.media-amazon.com/images/I/81E-GVkEsrL._UF894,1000_QL80_.jpg', 23),
+(25, 'Coisas óbvias sobre o amor', 56.40, 'Romance', 2024, 'https://m.media-amazon.com/images/I/81LMf5x28kL._UF894,1000_QL80_.jpg', 25),
+(28, 'Xeque-mate', 44.90, 'Romance', 2024, 'https://m.media-amazon.com/images/I/81O6eWVPaiL.jpg', 3),
+(30, 'Um amor problemático de verão', 44.59, 'Romance', 2025, 'https://m.media-amazon.com/images/I/81mxxQTX0wL.jpg', 3),
+(32, 'Era uma vez um coração partido', 49.90, 'Fantasia', 2021, 'https://m.media-amazon.com/images/I/91L6DCEfDuL._UF1000,1000_QL80_.jpg', 29),
+(34, 'No fundo é amor', 45.40, 'Romance', 2025, 'https://m.media-amazon.com/images/I/81XvsucSLVL.jpg', 3),
+(37, 'Não é amor', 45.99, 'Romance', 2025, 'https://m.media-amazon.com/images/I/71i-HM1ZrlL.jpg', 3),
+(40, 'Divinos rivais', 36.40, 'Romance', 2024, 'https://m.media-amazon.com/images/I/810NKENMWoL._UF1000,1000_QL80_.jpg', 34),
+(43, 'Caraval', 56.40, 'Fantasia', 2023, 'https://m.media-amazon.com/images/I/71p66yY4htL.jpg', 29),
+(47, 'Intermezzo', 68.30, 'Drama', 2024, 'https://m.media-amazon.com/images/I/71y3p559-TL.jpg', 40);
+
+
 
 ```
 
