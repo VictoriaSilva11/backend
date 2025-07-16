@@ -9,6 +9,10 @@ Este é o backend da aplicação **44Books**, uma livraria fictícia com CRUD co
 - @fastify/cors
 - mysql2 (driver para Node.js)
 
+## Diagrama do banco de dados
+
+![Diagrama ER](diagrama44books.png)
+
 ##  Configuração do Banco de Dados
 
 ```sql
